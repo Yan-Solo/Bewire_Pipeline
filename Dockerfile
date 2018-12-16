@@ -11,6 +11,6 @@ JAVA_OPTS="" \
 JENKINS_HOME="/opt/bitnami/jenkins/jenkins_home" \
 JENKINS_PASSWORD="bitnami" \
 JENKINS_USERNAME="user" \
-PATH="/opt/bitnami/java/bin:/opt/bitnami/git/bin:$PATH"
+PATH="/opt/sonar-runner/bin:/opt/bitnami/java/bin:/opt/bitnami/git/bin:$PATH"
 
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt

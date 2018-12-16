@@ -19,6 +19,8 @@ services:
     build: .
     restart: always
     hostname: jenkins
+    environment:
+      - /opt/sonar-runner/bin:$PATH
     ports:
       - '8080:8080'
     volumes:
