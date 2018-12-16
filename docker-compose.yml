@@ -19,8 +19,6 @@ services:
     build: .
     restart: always
     hostname: jenkins
-    environment:
-      - JENKINS_PASSWORD=iop123!
     ports:
       - '8080:8080'
     volumes:
