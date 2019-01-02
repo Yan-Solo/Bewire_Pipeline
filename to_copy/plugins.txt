@@ -32,7 +32,6 @@ clearcase
 cvs
 git
 git-parameter
-github
 gitlab-plugin
 p4
 repo
@@ -41,12 +40,8 @@ teamconcert
 tfs
 matrix-project
 ssh-slaves
-windows-slaves
 matrix-auth
 pam-auth
-ldap
-role-strategy
-active-directory
 email-ext
 emailext-template
 mailer

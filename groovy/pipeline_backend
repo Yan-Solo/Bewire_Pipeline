@@ -1,36 +1,35 @@
 pipeline {
   agent any
+  tools {
+    maven 'apache-maven-3.6.0'
+  }
 
   stages {
-    stage ('Compile Stage') {
+    stage ('Checkout stage') {
       steps {
-        withMaven(maven : 'maven3_5_0') {
-          sh 'mvn clean build'
-        }
+        git branch: 'develop', url: 'http://192.168.1.8/team-bewire/bewirebackend'
       }
     }
 
-    stage ('Test Stage') {
+    stage ('Compile stage') {
       steps {
-        withMaven(maven : 'maven3_5_0') {
-          sh 'mvn test'
-        }
+        sh 'mvn clean install'
       }
     }
 
-    stage ('Deployement Stage') {
+    stage ('SonarQube scan stage') {
       steps {
-        withMaven(maven : 'maven3_5_0') {
-          sh 'mvn deploy'
-        }
+        sh '/opt/sonar-runner/bin/sonar-scanner -Dproject.settings=/var/jenkins_home/workspace/bewirebackend/sonar-project.properties'
       }
     }
 
-    stage ('Sonar QA Stage') {
+    stage ('Deploy stage') {
       steps {
-        withSonarQube(sonar : 'SonarQube Scanner 3.2.0.1227') {
-          sh 'sonar-scanner'
-        }
+        echo "sh 'ssh user@server rm -rf PROJECT_PATH'"
+        echo "sh 'ssh user@server mkdir -p PROJECT PATH'"
+        echo "sh 'scp -r target user@server:PROJECT_PATH'"
+        echo "sh 'ssh user@server killall -q TERM java'"
+        echo "sh 'ssh user@server java -jar PROJECT_PATH/backend.jar'"
       }
     }
   }
