@@ -13,8 +13,7 @@ services:
     volumes:
       - 'gitlab_config:/etc/gitlab'
       - 'gitlab_log:/etc/log/gitlab'
-      - 'gitlab_data:/var/opt/gitlab'
-      - 'gitlab_backups:/secret/gitlab/backups'
+      - 'gitlab_data_backups:/var/opt/gitlab/backups'
 
   jenkins:
     build: .
@@ -65,7 +64,7 @@ volumes:
   gitlab_config:
   gitlab_log:
   gitlab_data:
-  gitlab_backups:
+  gitlab_data_backups:
   jenkins_data:
   sonarqube_conf:
   sonarqube_data:
