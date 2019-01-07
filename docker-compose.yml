@@ -13,6 +13,7 @@ services:
     volumes:
       - 'gitlab_config:/etc/gitlab'
       - 'gitlab_log:/etc/log/gitlab'
+      - 'gitlab_data:/var/opt/gitlab'
       - 'gitlab_data_backups:/var/opt/gitlab/backups'
 
   jenkins:
