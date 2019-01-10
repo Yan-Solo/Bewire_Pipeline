@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Kill any running dockers
+docker rm $(docker ps -aq) -f
+
 # Restore backup volumes
 rsync -azvlogp /home/jan/Documents/School/Bewire/backup/* /var/lib/docker/volumes/
 
