@@ -2,6 +2,7 @@
 
 # Variables
 dir=$1
+backup='project14@192.168.1.4'
 
 # Make backup folder if it doensn't already exist
 mkdir -p /home/$USER/pipeline_backup
@@ -14,3 +15,6 @@ else
 fi
 
 rsync -azvlogp $dir/*pipeline* /home/$USER/pipeline_backup
+
+
+## SSH TUNNEL

@@ -1,0 +1,23 @@
+version: '2.2'
+services:
+  gitlab:
+    image: 'gitlab/gitlab-ce:latest'
+    restart: always
+    hostname: gitlab
+    environment:
+      - GITLAB_OMNIBUS_CONFIG=external_url 'http://192.168.1.14'
+      - force=yes
+    ports:
+      - '80:80'
+      - '222:22'
+    volumes:
+      - 'gitlab_config:/etc/gitlab'
+      - 'gitlab_log:/etc/log/gitlab'
+      - 'gitlab_data:/var/opt/gitlab'
+      - 'gitlab_data_backups:/var/opt/gitlab/backups'
+
+volumes:
+  gitlab_config:
+  gitlab_log:
+  gitlab_data:
+  gitlab_data_backups:

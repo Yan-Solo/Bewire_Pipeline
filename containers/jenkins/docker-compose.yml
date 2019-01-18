@@ -1,0 +1,15 @@
+version: '2.2'
+services:
+  jenkins:
+    build: .
+    restart: always
+    hostname: jenkins
+    environment:
+      - /opt/sonar-runner/bin:$PATH
+    ports:
+      - '8080:8080'
+    volumes:
+      - 'jenkins_logs:/var/jenkins_logs'
+volumes:
+  jenkins_data:
+  jenkins_logs:
