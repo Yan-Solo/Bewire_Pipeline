@@ -14,3 +14,5 @@ echo restoring gitlab backup
 sleep 60
 docker exec $(docker ps | grep gitlab | cut -d ' ' -f 1) gitlab-rake gitlab:backup:restore
 rm -rf /var/lib/docker/volumes/pipelin_gitlab_data_backups/_data/*
+
+## Delete this after the test
