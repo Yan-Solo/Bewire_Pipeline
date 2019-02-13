@@ -7,7 +7,7 @@ pipeline {
   stages {
     stage ('Checkout stage') {
       steps {
-        git branch: 'develop', url: 'http://192.168.1.8/team-bewire/bewirebackend'
+        git branch: 'testless', url: 'http://192.168.1.14/team-bewire/bewirebackend'
       }
     }
 
@@ -19,17 +19,26 @@ pipeline {
 
     stage ('SonarQube scan stage') {
       steps {
-        sh '/opt/sonar-runner/bin/sonar-scanner -Dproject.settings=/var/jenkins_home/workspace/bewirebackend/sonar-project.properties'
+         sh '/opt/sonar-runner/bin/sonar-runner -Dproject.settings=/var/jenkins_home/workspace/bewirebackend/sonar-project.properties -Dsonar.host.url=http://192.168.1.14:9000'
       }
     }
 
-    stage ('Deploy stage') {
+    stage ('Publish stage') {
       steps {
-        echo "sh 'ssh user@server rm -rf PROJECT_PATH'"
-        echo "sh 'ssh user@server mkdir -p PROJECT PATH'"
-        echo "sh 'scp -r target user@server:PROJECT_PATH'"
-        echo "sh 'ssh user@server killall -q TERM java'"
-        echo "sh 'ssh user@server java -jar PROJECT_PATH/backend.jar'"
+        nexusArtifactUploader(
+          nexusVersion: 'nexus3',
+          protocol: 'http',
+          nexusUrl: '192.168.1.14:8081',
+          version: '0.1',
+          groupId: 'com/bewire/',
+          repository: 'bewireBackend/',
+          artifacts: [
+            [artifactId: 'BewireBackend',
+              classifier: '',
+              file: '/var/jenkins_home/workspace/bewireBackend/target/BewireBackend-0.0.1-SNAPSHOT.jar',
+              type: 'jar']
+            ]
+          )
       }
     }
   }

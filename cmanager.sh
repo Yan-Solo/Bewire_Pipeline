@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dirs=(gitlab jenkins nexus sonarqube)
+dirs=(ls -d */)
 
 if [[ $1 == "up" ]]; then
   action="up -d"

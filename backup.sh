@@ -2,7 +2,7 @@
 
 # Variables
 dir=$1
-backup='project14@192.168.1.4'
+backup='project14@192.168.1.14'
 
 # Make backup folder if it doensn't already exist
 mkdir -p /home/$USER/pipeline_backup

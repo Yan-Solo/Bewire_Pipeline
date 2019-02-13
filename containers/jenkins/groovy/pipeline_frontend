@@ -2,23 +2,15 @@ pipeline {
   agent any
 
   stages {
-    stage ('Compile Stage') {
+    stage ('Checkout stage') {
       steps {
-        sh 'expo build'
+        git branch: 'develop', url: 'http://192.168.1.14/team-bewire/bewire-app'
       }
     }
 
-    stage ('Test Stage') {
+    stage ('Compile stage') {
       steps {
-        withSonarScanner(sonarscanner : 'sonar-runner2.4') {
-          sh 'voer sonarScanner uit'
-        }
-      }
-    }
-
-    stage ('Deployement Stage') {
-      steps {
-        sh 'Deploy'
+        sh 'expo build:android --non-interactive'
       }
     }
   }

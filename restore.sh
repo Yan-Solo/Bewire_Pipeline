@@ -4,10 +4,10 @@
 docker rm $(docker ps -aq) -f
 
 # Restore backup volumes
-rsync -azvlogp /home/jan/Documents/School/Bewire/backup/* /var/lib/docker/volumes/
+rsync -azvlogp ~/Documents/School/Bewire/backup/* /var/lib/docker/volumes/
 
 # Start pipeline
-docker-compose -f /home/jan/Documents/School/Bewire/Pipeline/docker-compose.yml up -d --force-recreate
+docker-compose -f ~/Documents/School/Bewire/Pipeline/docker-compose.yml up -d --force-recreate
 
 # Put gitlab backup back in place
 echo restoring gitlab backup
